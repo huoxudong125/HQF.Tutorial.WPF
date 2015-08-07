@@ -27,6 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Style", "Style", "{F523865A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HQF.WPF.Tutorial.Trigger", "HQF.WPF.Tutorial.Trigger\HQF.WPF.Tutorial.Trigger.csproj", "{D3BE180C-4B11-4F6A-BAAD-6C7D31F68B3E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1C8A6CA-DEA4-42DD-BACB-D8B3624981E5}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

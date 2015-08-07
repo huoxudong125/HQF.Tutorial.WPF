@@ -11,5 +11,7 @@
 [2,000 Things You Should Know About C#](http://csharp.2000things.com/)
 [StackOverFlow](http://www.stackoverflow.com)  
 [CodePlex](http://www.codeplex.com)
+[joshsmithonwpf](https://joshsmithonwpf.wordpress.com)  
+[Josh Smith @ codeproject](http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=247684)  
 
 
