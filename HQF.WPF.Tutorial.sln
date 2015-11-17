@@ -35,6 +35,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Chart", "Chart", "{73926BE0-39E5-4911-BE60-888BE81079C0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataGrid", "DataGrid", "{AF2E2382-933B-49CB-93C5-B5CB04D6E57D}"
+	ProjectSection(SolutionItems) = preProject
+		Controls\DataGrid\Readme.md = Controls\DataGrid\Readme.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HQF.Tutorial.WPF.Controls.DataGrid", "Controls\DataGrid\HQF.Tutorial.WPF.Controls.DataGrid\HQF.Tutorial.WPF.Controls.DataGrid.csproj", "{202EE025-C731-4A0F-85EF-5483E8C8B0A7}"
 EndProject
