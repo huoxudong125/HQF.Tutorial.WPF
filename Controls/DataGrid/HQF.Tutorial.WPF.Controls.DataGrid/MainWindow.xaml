@@ -1,0 +1,64 @@
+﻿<Window x:Class="HQF.Tutorial.WPF.Controls.DataGrid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HQF.Tutorial.WPF.Controls.DataGrid"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="SeparatorBrush" Value="WhiteSmoke" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+        <Style x:Key="AlignRight" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding}" 
+                  CanUserAddRows="False" CanUserReorderColumns="True" 
+                  CanUserResizeColumns="True" CanUserResizeRows="False" 
+                  SelectionUnit="Cell" SelectionMode="Extended">
+            <DataGrid.CellStyle>
+                <Style>
+                    <Style.Triggers>
+                        <Trigger Property="DataGridCell.IsSelected" Value="True">
+                            <Setter Property="DataGridCell.Background" Value="SteelBlue" />
+                            <Setter Property="DataGridCell.BorderBrush" Value="GreenYellow" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Alive" Binding="{Binding Alive}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}" />
+
+                <!--<DataGridTemplateColumn Header="Birthday" SortMemberPath="Birthday">-->
+                <DataGridTemplateColumn Header="Birthday" SortMemberPath="Birthday.Day">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Birthday}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Age" Binding="{Binding Age, StringFormat=N2}" ElementStyle="{StaticResource AlignRight}" IsReadOnly="True" />
+
+                <DataGridHyperlinkColumn Header="Homepage" Binding="{Binding Homepage}" IsReadOnly="True">
+                    <DataGridHyperlinkColumn.ElementStyle>
+                        <Style>
+                            <EventSetter Event="Hyperlink.Click" Handler="Hyperlink_Clicked" />
+                        </Style>
+                    </DataGridHyperlinkColumn.ElementStyle>
+                </DataGridHyperlinkColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
