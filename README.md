@@ -1,6 +1,19 @@
 # HQF_WPF_Tutorial
 [![Build status](https://ci.appveyor.com/api/projects/status/ga2tyyy9vkk438vp?svg=true)](https://ci.appveyor.com/project/huoxudong125/hqf-wpf-tutorial)
 
+##More Detail
+
+###DataGrid
+[DataGird Readme](Controls/DataGrid/Readme.md)  
+
+###Style
+[Style.Themes Readme](Style/Themes/HQF.Tutorial.WPF.Style.Themes/Readme.md)  
+
+
+###Advance
+[Speech Readme](Advance/Speech/HQF.Tutorial.WPF.Advance.Speech/Readme.md)  
+
+
 #Relate Resource
 
 [WPF ON MSDN](https://msdn.microsoft.com/en-us/library/ms754130(v=vs.110).aspx)   
