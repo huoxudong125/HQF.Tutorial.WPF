@@ -1,0 +1,111 @@
+﻿<Window x:Class="HQF.Tutorial.WPF.Controls.Chart6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HQF.Tutorial.WPF.Controls.Chart6"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Loaded ="Window_Loaded"
+        Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                Grid.Column="0">
+            <chartingToolkit:Chart Name="myChart1"
+            Width="1000" Height="600">
+
+                <chartingToolkit:Chart.LegendStyle>
+                    <Style TargetType="visualizationToolkit:Legend">
+                        <Setter Property="Width" Value="0" />
+                    </Style>
+                </chartingToolkit:Chart.LegendStyle>
+
+                <chartingToolkit:Chart.Axes>
+                    <chartingToolkit:LinearAxis Name="YAxis1" Orientation="Y" ShowGridLines="False" />
+                    <chartingToolkit:LinearAxis Name="XAxis1" Orientation="X" ShowGridLines="False"/>
+                </chartingToolkit:Chart.Axes>
+
+                <chartingToolkit:LineSeries Name="MyLineSeries1" ItemsSource="{Binding}"
+                        IndependentValueBinding="{Binding X}"
+                        DependentValueBinding="{Binding Y}">
+                    <chartingToolkit:LineSeries.DataPointStyle>
+                        <Style TargetType="{x:Type chartingToolkit:LineDataPoint}">
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="Height" Value="0"/>
+                            <Setter Property="Width" Value="0"/>
+                        </Style>
+                    </chartingToolkit:LineSeries.DataPointStyle>
+                </chartingToolkit:LineSeries>
+            </chartingToolkit:Chart>
+        </ScrollViewer>
+
+        <Grid Grid.Column="1">
+            <DockPanel LastChildFill="True" >
+                <ScrollBar Name="HBarZoom"
+                   Height="20" DockPanel.Dock="Bottom" Orientation="Horizontal"
+                   BorderBrush="Black"
+                   Value="50" Minimum="1" Maximum="100" 
+                   Margin="0,0,40,0"
+                   ValueChanged="HBar_ValueChanged"/>
+                <ScrollBar Name="HBar"
+                   Height="20" DockPanel.Dock="Bottom" Orientation="Horizontal"
+                   BorderBrush="Black"
+                   Value="250" Minimum="0" Maximum="100" 
+                   Margin="0,0,40,0"
+                   ValueChanged="HBar_ValueChanged"/>
+                <ScrollBar Name="VBarZoom"
+                   Width="20" DockPanel.Dock="Right" Orientation="Vertical"
+                   BorderBrush="Black"
+                   Value="50" Minimum="1" Maximum="100"
+                   ValueChanged="VBar_ValueChanged">
+                    <ScrollBar.LayoutTransform>
+                        <RotateTransform Angle="180"/>
+                    </ScrollBar.LayoutTransform>
+                </ScrollBar>
+                <ScrollBar Name="VBar"
+                   Width="20" DockPanel.Dock="Right" Orientation="Vertical"
+                   Value="1" Minimum="0" Maximum="1000000"
+                   BorderBrush="Black"
+                   ValueChanged="VBar_ValueChanged">
+                    <ScrollBar.LayoutTransform>
+                        <RotateTransform Angle="180"/>
+                    </ScrollBar.LayoutTransform>
+                </ScrollBar>
+                <chartingToolkit:Chart Name="myChart2" DockPanel.Dock="Bottom">
+
+                    <chartingToolkit:Chart.LegendStyle>
+                        <Style TargetType="visualizationToolkit:Legend">
+                            <Setter Property="Width" Value="0" />
+                        </Style>
+                    </chartingToolkit:Chart.LegendStyle>
+
+                    <chartingToolkit:Chart.Axes>
+                        <chartingToolkit:LinearAxis Name="YAxis2" Orientation="Y" ShowGridLines="False" />
+                        <chartingToolkit:LinearAxis Name="XAxis2" Orientation="X" ShowGridLines="False" />
+                    </chartingToolkit:Chart.Axes>
+
+                    <chartingToolkit:LineSeries Name="MyLineSeries2" ItemsSource="{Binding}"
+                        IndependentValueBinding="{Binding X}"
+                        DependentValueBinding="{Binding Y}">
+                        <chartingToolkit:LineSeries.DataPointStyle>
+                            <Style TargetType="{x:Type chartingToolkit:LineDataPoint}">
+                                <Setter Property="Background" Value="Black" />
+                                <Setter Property="Height" Value="0"/>
+                                <Setter Property="Width" Value="0"/>
+                            </Style>
+                        </chartingToolkit:LineSeries.DataPointStyle>
+                    </chartingToolkit:LineSeries>
+                </chartingToolkit:Chart>
+
+            </DockPanel>
+
+        </Grid>
+    </Grid>
+</Window>

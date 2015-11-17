@@ -1,0 +1,69 @@
+﻿<Window x:Class="HQF.Tutorial.WPF.Controls.Chart5.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HQF.Tutorial.WPF.Controls.Chart5"
+        xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        Loaded="Window_Loaded"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:MyLabelConverter x:Key="MyLabelConverter" />
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <DataGrid Name="InfoText"
+              AutoGenerateColumns="True"
+              CanUserAddRows="False" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserResizeRows="False"
+              SelectionUnit="Cell" SelectionMode="Extended"
+              Height="100" DockPanel.Dock="Top" />
+        <chart:Chart Name="myChart"
+            DockPanel.Dock="Top"
+            Width="Auto" Height="Auto"
+            MinWidth="400" MinHeight="300">
+
+            <chart:Chart.LegendStyle>
+                <Style TargetType="visualizationToolkit:Legend">
+                    <Setter Property="Width" Value="0" />
+                </Style>
+            </chart:Chart.LegendStyle>
+
+            <chart:Chart.Axes>
+                <chart:LinearAxis Name="SharedYAxis" Orientation="Y" ShowGridLines="False">
+                    <chart:LinearAxis.AxisLabelStyle>
+                        <Style TargetType="chart:AxisLabel">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="chart:AxisLabel">
+                                        <TextBlock Text="{Binding Converter={StaticResource MyLabelConverter}}" />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </chart:LinearAxis.AxisLabelStyle>
+                </chart:LinearAxis>
+                <chart:LinearAxis Name="SharedXAxis" Orientation="X" ShowGridLines="True">
+
+                    <!--rotate the X-Axis labels -->
+                    <chart:LinearAxis.AxisLabelStyle>
+                        <Style TargetType="chart:NumericAxisLabel">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="chart:NumericAxisLabel">
+                                        <TextBlock Text="{TemplateBinding FormattedContent}">
+                                            <TextBlock.LayoutTransform>
+                                                <RotateTransform Angle="90" CenterX = "40" CenterY = "30" />
+                                            </TextBlock.LayoutTransform>
+                                        </TextBlock>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </chart:LinearAxis.AxisLabelStyle>
+                </chart:LinearAxis>
+            </chart:Chart.Axes>
+        </chart:Chart>
+    </DockPanel>
+</Window>

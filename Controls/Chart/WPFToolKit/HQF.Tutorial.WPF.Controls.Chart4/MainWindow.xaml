@@ -1,0 +1,94 @@
+﻿<Window x:Class="HQF.Tutorial.WPF.Controls.Chart4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HQF.Tutorial.WPF.Controls.Chart4"
+        xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:visualizationToolkit="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" 
+        PreviewKeyDown="OnKeyDown"       
+    Loaded ="Window_Loaded">
+
+    <DockPanel LastChildFill="True">
+        <TextBox Name="InfoBox" Text="{Binding InfoBoxText, Mode=OneWay}" Height="Auto" DockPanel.Dock="Top"/>
+        <Canvas DockPanel.Dock="Top" IsHitTestVisible="True"
+            MouseDown="OnMouseLeftButtonDown"
+            MouseLeftButtonUp="OnMouseLeftButtonUp"
+            MouseMove="OnMouseMove"
+            IsManipulationEnabled="True"
+            ManipulationDelta="OnManipulationDelta"
+            TouchDown="OnTouchDown"
+            TouchMove="OnTouchMove"
+            TouchUp="OnTouchUp"
+            Width="Auto" Height="Auto" MinWidth="400" MinHeight="300">
+            <chart:Chart Name="myChart" Title="2014"
+                Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}, Path=ActualWidth}"
+                Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}, Path=ActualHeight}">
+
+                <chart:LineSeries Title="Volkswagen"
+                          ItemsSource="{Binding Points}"
+                          IndependentValueBinding="{Binding Date}"
+                          DependentValueBinding="{Binding PriceVW}"
+                          MouseMove="OnMouseMove">
+                    <chart:LineSeries.DependentRangeAxis>
+                        <chart:LinearAxis Orientation="Y"
+                              Title="Volkswagen"
+                              ShowGridLines="True" />
+                    </chart:LineSeries.DependentRangeAxis>
+                    <chart:LineSeries.DataPointStyle>
+                        <Style TargetType="{x:Type chart:LineDataPoint}">
+                            <Setter Property="Background" Value="Red" />
+                            <Setter Property="Height" Value="0"/>
+                            <Setter Property="Width" Value="0"/>
+                        </Style>
+                    </chart:LineSeries.DataPointStyle>
+                </chart:LineSeries>
+
+                <chart:LineSeries Title="Daimler"
+                          ItemsSource="{Binding Points}"
+                          IndependentValueBinding="{Binding Date}"
+                          DependentValueBinding="{Binding PriceDaimler}">
+                    <chart:LineSeries.DependentRangeAxis>
+                        <chart:LinearAxis Orientation="Y" Title="Daimler" />
+                    </chart:LineSeries.DependentRangeAxis>
+                    <chart:LineSeries.DataPointStyle>
+                        <Style TargetType="{x:Type chart:LineDataPoint}">
+                            <Setter Property="Background" Value="Green" />
+                            <Setter Property="Height" Value="0"/>
+                            <Setter Property="Width" Value="0"/>
+                        </Style>
+                    </chart:LineSeries.DataPointStyle>
+                </chart:LineSeries>
+
+                <chart:Chart.Axes>
+                    <chart:DateTimeAxis Name="SharedXAxis"
+                              Orientation="X"
+                              Title="shared X-Axis"
+                              ShowGridLines="True">
+
+                        <!--rotate the X-Axis labels -->
+                        <chart:DateTimeAxis.AxisLabelStyle>
+                            <Style TargetType="chart:DateTimeAxisLabel">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="chart:DateTimeAxisLabel">
+                                            <TextBlock Text="{TemplateBinding FormattedContent}">
+                                                <TextBlock.LayoutTransform>
+                                                    <RotateTransform Angle="90" CenterX = "40" CenterY = "30"/>
+                                                </TextBlock.LayoutTransform>
+                                            </TextBlock>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </chart:DateTimeAxis.AxisLabelStyle>
+
+                    </chart:DateTimeAxis>
+                </chart:Chart.Axes>
+            </chart:Chart>
+
+        </Canvas>
+    </DockPanel>
+</Window>
