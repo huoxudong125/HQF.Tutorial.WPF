@@ -80,7 +80,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AxisPointLinear.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Zoom.cs" />
     <Compile Include="ViewModel.cs" />
     <Compile Include="PriceClusterSimple.cs" />
     <Compile Include="Model.cs" />
